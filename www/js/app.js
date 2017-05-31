@@ -27,29 +27,85 @@ angular.module('starter', ['ionic'])
 		.state('index',{
 		url: '/index',
 		templateUrl: 'templates/menu.html',
-		//controller: 'AppCtrl'
+		controller: 'AppCtrl'
 	})
 		.state('list',{
 		url: '/list',
 		templateUrl: 'templates/list.html',
-		//controller: 'AppCtrl'
+		controller: 'AppCtrl'
 	})
 		.state('history',{
 		url: '/history',
 		templateUrl: 'templates/history.html',
-		//controller: 'AppCtrl'
+		controller: 'AppCtrl'
 	})
 		.state('set',{
 		url: '/set',
 		templateUrl: 'templates/set.html',
-		//controller: 'AppCtrl'
+		controller: 'AppCtrl'
 	})
 		
 		.state('login',{
 		url: '/login',
 			templateUrl: 'templates/login.html',
-		//controller: 'AppCtrl'
+		controller: 'AppCtrl'
 	})
 	$urlRouterProvider.otherwise('/login');
+	
+	})
+		
 
-});
+	.controller('AppCtrl',function ($scope,$state,$ionicPopup){
+	$scope.login={};
+	var user="admin";
+	var password="123456";
+	$scope.doLogin=function(){	
+		console.log("alert");
+		console.log(password);
+		console.log($scope.login.username);
+		console.log($scope.login.password);
+		
+		
+		if ($scope.login.username == 'admin' && $scope.login.password == '123456') {
+		$ionicPopup.alert({
+			title:'LOGIN',
+			template: ' LOGIN Successful'
+			})
+
+		$state.go('history');
+
+    }else{
+		
+		$ionicPopup.alert({
+			title:'LOGIN',
+			template: 'Incorrectly Check '
+			})
+
+		 $state.go("login");
+		
+	 }
+	}
+})
+
+/*.controller('AppCtrl',function ($scope,$state,$ionicPopup){
+	var url="http://localhost/ionic_php/";
+
+	$scope.login={};
+	var user=$scope.login;
+	var password=$scope.login.password;
+	$scope.doLogin=function(){	
+		console.log("alert");
+		console.log(password);
+		console.log($scope.login.username);
+		console.log($scope.login.password);
+		
+		
+		if (user == $scope.login && $scope.login.password == $scope.login.password) {
+			str=url+"login.php?username="user+"&password"+password;
+			&http.get(str)
+
+	}
+})
+
+*/
+
